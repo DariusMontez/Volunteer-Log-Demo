@@ -1,0 +1,27 @@
+<div id="details" v-cloak>
+
+  <template v-if="log">
+    <h1>{{ log.title }}</h1>
+    <p>You have volunteered for {{ logHours(log) }} hours.</p>
+
+    <template v-for="entry in log.entries">
+      <p>{{ entry.hours }} - {{ entry.createdAt | date }}</p>
+    </template>
+
+    <form @submit.prevent="submitAddEntry">
+      <div class="row">
+        
+        <div class="col-sm-6">
+          <input type="number" name="hours" placeholder="Hours worked" class="form-control">
+        </div>
+        
+        <div class="col-sm-6">
+          <input type="submit" value="Add Entry" class="btn">
+        </div>
+
+      </div>
+    </form>
+  </template>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

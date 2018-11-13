@@ -1,0 +1,36 @@
+<div id="log-index" v-cloak>
+
+  <div class="container">
+  
+    <h1>Your Volunteer Logs</h1>
+    
+    <template v-if="logs">
+    
+    <p>You have {{ logs.length }} logs totalling to {{ totalHours() }} hours.</p>
+    
+      <template v-for="log in logs">
+        <a v-bind:href="`/log/details/${log.id}`"> <p>{{ log.title }}</a> - {{ log.entries.length }} entries - {{ logHours(log) }} hours</p>
+      </template>
+    
+    </template>
+
+    <form @submit.prevent="submitCreateLog">
+      <div class="row">
+        
+        <div class="col-sm-6">
+          <input type="text" name="title" placeholder="Title" class="form-control">
+
+        </div>
+        
+        <div class="col-sm-6">
+          <input type="submit" value="New Volunteer Log" class="btn">
+        </div>
+
+      </div>
+    </form>
+  
+  </div>
+
+</div>
+
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
